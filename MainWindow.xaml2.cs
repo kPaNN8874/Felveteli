@@ -1,5 +1,4 @@
-﻿using Felvételi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,18 +18,48 @@ namespace Felveteli
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class WinUjFelvetelizo : Window
+    public partial class WinUjfelvetelizo : Window
     {
         Felvetelizo felvetelizoAdatai;
-        public WinUjFelvetelizo()
+        public WinUjfelvetelizo()
         {
             InitializeComponent();
         }
 
-
-        public WinUjFelvetelizo (Felvetelizo ujDiak):this()
+        public WinUjfelvetelizo(Felvetelizo ujdiak) : this()
         {
-            this.felvetelizoAdatai = ujDiak;
+            this.felvetelizoAdatai = ujdiak;
+
+            this.Title = $"{felvetelizoAdatai.Neve} adataink rögzítése";
+            txtNeve.Text = felvetelizoAdatai.Neve;
         }
+
+        private void btnRogzit_Click(object sender, RoutedEventArgs e)
+        {
+            felvetelizoAdatai.OM_Azonosito = txtOMazonosito.Text;
+            felvetelizoAdatai.Neve = txtNeve.Text;
+            felvetelizoAdatai.EretesitesiCime = txtCim.Text;
+            felvetelizoAdatai.Email = txtEmail.Text;
+            felvetelizoAdatai.SzuletesiDatum = Convert.ToDateTime(txtSzuletesiDatum.Text);
+
+            try
+            {
+                this.felvetelizoAdatai.Matematika = int.Parse(txtMatematika.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nem számformátum!");
+                return;
+            }
+            if (felvetelizoAdatai.Matematika < 0 || felvetelizoAdatai > 50)
+            {
+                MessageBox.Show("Nem lehet ennyi pontja!");
+                return;
+            }
+
+            this.felvetelizoAdatai.Magyar = int.Parse(txtMagyar.Text);
+            Close();
+        }
+
     }
 }

@@ -7,25 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Viewbox>
-        <Grid>
+        <Grid Background="DeepSkyBlue" Width="645" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid x:Name="dg_diakok" Width="420" Height="310"/>
+            <DataGrid x:Name="dg_diakok" Height="310" Background="LightSkyBlue" Grid.ColumnSpan="2" Margin="15,20,215,20"/>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="btn_Ujdiak" Margin="20" Content="Új Diák" FontSize="30" Click="btn_Ujdiak_Click"/>
-                <Button x:Name="btn_torol" Grid.Row="1" Margin="20" Content="Törlés" FontSize="30" Click="btn_torol_Click"/>
-                <Button x:Name="btn_import" Grid.Row="2" Margin="20" Content="Import" FontSize="30" Click="btn_import_Click"/>
-                <Button x:Name="btn_export" Grid.Row="3" Margin="20" Content="Export" FontSize="30" Click="btn_export_Click"/>
+                <Button x:Name="btn_Ujdiak" Margin="15" Content="Új Diák" FontSize="25" Click="btn_Ujdiak_Click" Background="LightCyan"/>
+                <Button x:Name="btn_torol" Grid.Row="1" Margin="15" Content="Törlés" FontSize="25" Click="btn_torol_Click" Background="LightCyan"/>
+                <Button x:Name="btn_import" Grid.Row="2" Margin="15" Content="Import" FontSize="25" Click="btn_import_Click" Background="LightCyan"/>
+                <Button x:Name="btn_export" Grid.Row="3" Margin="15" Content="Export" FontSize="25" Click="btn_export_Click" Background="LightCyan"/>
+                <Button x:Name="btn_modosit" Grid.Row="4" Margin="15" Content="Módosítás" FontSize="25" Click="btn_modosit_Click" Background="LightCyan" />
             </Grid>
         </Grid>
     </Viewbox>

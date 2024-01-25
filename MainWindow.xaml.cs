@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,11 @@ namespace Felveteli
     public partial class MainWindow : Window
     {
         List<Felvetelizo> diakok = new();
+        ObservableCollection<IFelvetelizo> sorok = new ObservableCollection<IFelvetelizo>();
         public MainWindow()
         {
             InitializeComponent();
+            dg_diakok.ItemsSource = sorok;
         }
 
         private void LoadData(string fileName)
@@ -49,7 +52,7 @@ namespace Felveteli
 
             foreach (var diak in diakok)
             {
-                sw.WriteLine($"{diak.Az};{diak.Nev};{diak.ErtCím};{diak.SzülDatum};{diak.Email};{diak.MatekPontok};{diak.MagyarPontok};");
+                sw.WriteLine($"{diak.Az};{diak.Neve};{diak.ErtCím};{diak.SzülDatum};{diak.Email};{diak.MatekPontok};{diak.MagyarPontok};");
             }
             sw.Close();
         }
@@ -87,19 +90,24 @@ namespace Felveteli
             }
         }
 
+       
+
+
         private void btn_ujdiak_Click(object sender, RoutedEventArgs e)
         {
             Felvetelizo ujdiak = new Felvetelizo();
-            ujdiak.Nev = txtNev.Text;
+            ujdiak.Neve = txtAdat.Text;
 
-            WinUjFelvetelizo ujablak = new WinUjFelvetelizo(ujdiak);
+            WinUjfelvetelizo ujablak = new WinUjfelvetelizo(ujdiak);
             ujablak.ShowDialog();
 
-            blCSVsor.content = ujdiak.CSVSortAdVissza();
+            lbCSVsor.Content = ujdiak.CSVSortAdVissza();
             diakok.Add(ujdiak);
+        }
+        
+        private void btn_modosit_Click(object sender, RoutedEventArgs e)
+        {
 
-
-          
         }
     }
 }
